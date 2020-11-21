@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹幕</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    input{
+      outline: none;
+      width: 536px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      display: block;
+    }
+    div.con{
+      position: relative;
+      width: 536px;
+      height: 540px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="con">
+    <video src="./test3.mp4" controls width="536" height="480"></video>
+    <input type="text">
+  </div>
+  <script type="module">
+    import Bullet from "./js/bullet.js";
+  
+    let input=document.querySelector("input");
+    document.addEventListener("keyup",keyHandler)
+
+    function keyHandler(e){
+      if(e.keyCode!==13) return;
+      let value=input.value;
+      if(value===undefined||value.trim().length===0) return;
+      let bullet=new Bullet(value);
+      bullet.appendTo(".con")
+      input.value="";
+    }
+
+  </script>
+</body>
+</html>
